@@ -68,13 +68,41 @@ it("Chai Assertions",()=>{
     expect('foo').to.be.a('string');
 }) 
 
-it.only("document",()=>{
+it("document",()=>{
 
     cy.document().should('have.property','charset').and('eq','UTF-8')
     cy.title().then(function(item){
         cy.log(item);
     })
     cy.title().should('eq','A place to practice your automation skills!')
+   })
 })
+describe("Inspect Automation Test Store items using chain of commands",()=>{
+    beforeEach("",()=>{
+        cy.visit("https://www.automationteststore.com/")
+        cy.title().then(function(item){
+            cy.log(item)
+        })
+
+    })
+  
+    it("Click on the first item using item header",()=>{
+        
+        cy.title().should("be.eq","A place to practice your automation skills!")
+        cy.get("a.logo > img").invoke("attr","src").should("eq","resources/image/18/7a/8.png")
+        cy.get('a.prdocutname').invoke("attr","title").should("eq","Skinsheen Bronzer Stick")     
+        cy.get('a.prdocutname').contains("Skinsheen Bronzer Stick").click();
+        cy.get("h1.productname > span.bgnone").should("have.text","Skinsheen Bronzer Stick")
+        cy.get(".cart").click();
+        cy.get("#cart_checkout1").invoke("attr","title").should("eq","Checkout")
+    
+    })
+    it.only("using a[href$] to locate elements",()=>{
+        cy.get('a[href$=login]').eq(0).click();
+        //cy.get('a[href$=password]').click();
+        cy.get('a[href$=loginname]').click();
+
+    }  
+    )
 
 })
