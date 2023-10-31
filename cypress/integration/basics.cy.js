@@ -98,9 +98,9 @@ describe("Inspect Automation Test Store items using chain of commands",()=>{
     
     })
     it.only("using a[href$] to locate elements",()=>{
-        cy.get('a[href$=login]').eq(0).click();
-        //cy.get('a[href$=password]').click();
-        cy.get('a[href$=loginname]').click();
+        cy.get('a[href$="login"]').eq(0).click();
+        cy.get('a[href$="forgotten/password"]').click();
+        //cy.get('a[href$="loginname"]').click();
 
     }  
     )
