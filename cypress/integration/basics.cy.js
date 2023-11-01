@@ -119,7 +119,7 @@ describe("Inspect Automation Test Store items using chain of commands",()=>{
         })
     })
     
-    it.only("Handling Alerts - Javascript Confirm Box!!!",()=>{
+    it("Handling Alerts - Javascript Confirm Box!!!",()=>{
       
         cy.visit("http://www.webdriveruniversity.com/Popup-Alerts/index.html");
         cy.title().then(function(item){
@@ -151,4 +151,19 @@ describe("Inspect Automation Test Store items using chain of commands",()=>{
         }))
       
     })
+    it.only("Handling iframes in cypress",()=>{
+
+
+        cy.visit("http://www.webdriveruniversity.com")
+        cy.get("a[href^='IFrame/index.html']").invoke("removeAttr","target").click();
+
+        cy.get("iframe#frame").should("have.attr","src");
+        cy.get("#frame").then($iframe => {
+            const body = $iframe.contents().find('body')
+            cy.wrap(body).as('iframe');
+        })
+         cy.get('@iframe').find('#button-find-out-more').click();
+         cy.get('@iframe').find("div.modal-body").should("contains.text","Welcome to webdriveruniversity.com we sell a wide range of electrical goods such as laptops, game consoles, cameras...")
+    })
+
 })
