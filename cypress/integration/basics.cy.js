@@ -118,8 +118,25 @@ describe("Inspect Automation Test Store items using chain of commands",()=>{
             cy.log(item);
         })
     })
+    
+    it.only("Handling Alerts - Javascript Confirm Box!!!",()=>{
+      
+        cy.visit("http://www.webdriveruniversity.com/Popup-Alerts/index.html");
+        cy.title().then(function(item){
+            cy.log(item)
+            expect(item).to.have.length(27)
+        })
+        cy.get("div.thumbnail").should("contain.text","JavaScript Confirm Box")
+        cy.get("span#button4").should("have.text","CLICK ME!")
+        cy.get("span#button4").click()
+        cy.on('window:alert',(str)=>{
+            return true;
+        })
+        cy.get("p#confirm-alert-text").should("have.text",'You pressed OK!');
+              
+    })
 
-    it.only("Handling Alerts - Javascript Alerts",()=>{
+    it("Handling Alerts - Javascript Confirm Box!!!",()=>{
       
         cy.visit("http://www.webdriveruniversity.com/Popup-Alerts/index.html");
         cy.title().then(function(item){
@@ -134,5 +151,4 @@ describe("Inspect Automation Test Store items using chain of commands",()=>{
         }))
       
     })
-
 })
