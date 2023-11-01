@@ -79,10 +79,10 @@ it("document",()=>{
 })
 describe("Inspect Automation Test Store items using chain of commands",()=>{
     beforeEach("",()=>{
-        cy.visit("https://www.automationteststore.com/")
-        cy.title().then(function(item){
-            cy.log(item)
-        })
+    //    cy.visit("https://www.automationteststore.com/")
+    //    cy.title().then(function(item){
+    //        cy.log(item)
+     //   })
 
     })
   
@@ -97,12 +97,42 @@ describe("Inspect Automation Test Store items using chain of commands",()=>{
         cy.get("#cart_checkout1").invoke("attr","title").should("eq","Checkout")
     
     })
-    it.only("using a[href$] to locate elements",()=>{
+    it("using a[href$] to locate elements",()=>{
         cy.get('a[href$="login"]').eq(0).click();
         cy.get('a[href$="forgotten/password"]').click();
         //cy.get('a[href$="loginname"]').click();
 
-    }  
-    )
+    })
+
+    it("Navigate to contact us page",()=>{
+
+        cy.visit("http://www.webdriveruniversity.com");
+        cy.get("#contact-us").invoke("removeAttr","target").click();
+       // cy.get("a[href*='selenium-webdriver-java-using-real-examples']").click();
+        cy.title().then(function(item){
+            cy.log(item);
+        })
+        cy.go('back');
+        cy.reload();
+        cy.title().then(function(item){
+            cy.log(item);
+        })
+    })
+
+    it.only("Handling Alerts - Javascript Alerts",()=>{
+      
+        cy.visit("http://www.webdriveruniversity.com/Popup-Alerts/index.html");
+        cy.title().then(function(item){
+            cy.log(item)
+            expect(item).to.have.length(27)
+        })
+        cy.get("div.thumbnail").should("contain.text","JavaScript Alert")
+        cy.get("span#button1").should("have.text","CLICK ME!")
+        cy.get("span#button1").click()
+        cy.on('window:alert',(str=>{
+             expect(str).to.equal("I am an alert box!")
+        }))
+      
+    })
 
 })
