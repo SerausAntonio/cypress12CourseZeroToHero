@@ -226,12 +226,57 @@ describe("Inspect Automation Test Store items using chain of commands",()=>{
         cy.get("div#double-click").dblclick();
     })
 
-    it.only("Actions drag and drop - Trigger",()=>{
+    it("Actions drag and drop - Trigger",()=>{
         cy.visit("http://www.webdriveruniversity.com/")
         cy.get("a[href*='Actions'").invoke('removeAttr','target').click();
         cy.get("h1#main-header").should("contain.text","The Key to Success is to take massive ACTION!")
         cy.get('#draggable').trigger('mousedown',{which: 1});
-        cy.get('#droppable').trigger('mousemove').trigger('mouseup',{force:true});
+        cy.get('#droppable').trigger('mousemover').trigger('mouseup',{force:true});
      })
+
+     it("Data Tables & Button States",()=>{
+        cy.visit("http://www.webdriveruniversity.com/")
+        cy.get("a[href*='Data-Table'").invoke('removeAttr','target').click();
+        cy.get("#main-header").should("contain.text","Data, Tables & Button States");
+        cy.get('ol.traversal-breadcrumb').children(".active").click({ multiple: true });
+        cy.get('ol.traversal-breadcrumb').children(".active").should("contain","Contact Us").click();
+        cy.get('ol.traversal-breadcrumb').each(function($el){
+
+            cy.log($el.text());
+        })   
+     
+
+     })
+
+     it("Navigate to closest Element",()=>{
+        cy.visit("http://www.webdriveruniversity.com/")
+        cy.get("a[href*='Data-Table'").invoke('removeAttr','target').click();
+
+        cy.get('.traversal-badge').closest('ul').should('have.class','list-group')
+
+})
+
+it("Navigate to closest Element",()=>{
+    cy.visit("http://www.webdriveruniversity.com/")
+    cy.get("a[href*='Data-Table'").invoke('removeAttr','target').click();
+
+    cy.get('.traversal-drinks-list:nth-child(2) > li:nth-child(2)').should("have.id","tea");
+   
+    cy.get('.traversal-drinks-list').each(function($item){
+
+      cy.log($item.text());
+    })
+
+    cy.get('.traversal-drinks-list:nth-child(2) > li:nth-child(2)').then(function($it){
+        cy.log($it.text());
+    })
+})
+it.only("Filter Element",()=>{
+    cy.visit("http://www.webdriveruniversity.com/")
+    cy.get("a[href*='Data-Table'").invoke('removeAttr','target').click();
+    cy.get('.btn-group-toggle > *').filter('.active')
+    .should('have.text','Button-1')
+
+})
 
 })
