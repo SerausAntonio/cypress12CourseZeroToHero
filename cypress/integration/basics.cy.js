@@ -151,7 +151,7 @@ describe("Inspect Automation Test Store items using chain of commands",()=>{
         }))
       
     })
-    it.only("Handling iframes in cypress",()=>{
+    it("Handling iframes in cypress",()=>{
 
 
         cy.visit("http://www.webdriveruniversity.com")
@@ -164,6 +164,25 @@ describe("Inspect Automation Test Store items using chain of commands",()=>{
         })
          cy.get('@iframe').find('#button-find-out-more').click();
          cy.get('@iframe').find("div.modal-body").should("contains.text","Welcome to webdriveruniversity.com we sell a wide range of electrical goods such as laptops, game consoles, cameras...")
+    })
+    it("Click on one of the Accordian items Below!",()=>{
+        cy.visit("http://www.webdriveruniversity.com/");
+        cy.get("a[href^='Accordion/index']").invoke("removeAttr","target").click();
+        cy.get("#main-header").should("contain.text","Click on One of the Accordian Items Below!");
+        cy.get("#manual-testing-accordion").click();
+        cy.get("#manual-testing-description").should("contain.text","Manual testing has for some time been the most popular way to test code. For this method, the tester plays an important role of end user and verifies that all the features of the application work correctly. Manual testing however is on the decline. Companies and developers have realised the efficiency, accuracy and cost savings that is possible by adopting the use of automation testing.")
+    })
+    it.only("Dropdown checkboxes",()=>{
+        cy.visit("http://www.webdriveruniversity.com/")
+        cy.get("a[href*='Dropdown-Checkboxes-RadioButtons").invoke('removeAttr','target').click();
+        cy.get("#main-header").should("contain.text","Dropdown Menu(s), Checkboxe(s) & Radio Button(s)");
+        cy.get("#checkboxes").find("input[value='option-2']").as("option2")
+        cy.get("@option2").check();
+        cy.get("#checkboxes").find("input[value='option-2']").should("be.checked");
+        cy.get("#checkboxes").find("input[value='option-3']").as("option3")
+        cy.get('@option3').uncheck();
+
+        cy.get("input[type='checkbox']").check(["option-1", "option-2"]);
     })
 
 })
