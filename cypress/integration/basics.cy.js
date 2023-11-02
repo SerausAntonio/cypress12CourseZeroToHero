@@ -172,7 +172,7 @@ describe("Inspect Automation Test Store items using chain of commands",()=>{
         cy.get("#manual-testing-accordion").click();
         cy.get("#manual-testing-description").should("contain.text","Manual testing has for some time been the most popular way to test code. For this method, the tester plays an important role of end user and verifies that all the features of the application work correctly. Manual testing however is on the decline. Companies and developers have realised the efficiency, accuracy and cost savings that is possible by adopting the use of automation testing.")
     })
-    it.only("Dropdown checkboxes",()=>{
+    it("Dropdown checkboxes",()=>{
         cy.visit("http://www.webdriveruniversity.com/")
         cy.get("a[href*='Dropdown-Checkboxes-RadioButtons").invoke('removeAttr','target').click();
         cy.get("#main-header").should("contain.text","Dropdown Menu(s), Checkboxe(s) & Radio Button(s)");
@@ -184,5 +184,54 @@ describe("Inspect Automation Test Store items using chain of commands",()=>{
 
         cy.get("input[type='checkbox']").check(["option-1", "option-2"]);
     })
+    it("Handling Radio Buttons",()=>{
+        cy.visit("http://www.webdriveruniversity.com/")
+        cy.get("a[href*='Dropdown-Checkboxes-RadioButtons").invoke('removeAttr','target').click();
+        cy.get("#radio-buttons").find("input[value='yellow']").check();
+
+    })
+    it("Handling Dropdown list",()=>{
+        cy.visit("http://www.webdriveruniversity.com/")
+        cy.get("a[href*='Dropdown-Checkboxes-RadioButtons").invoke('removeAttr','target').click();
+       
+        cy.get("div.section-title").find("#dropdowm-menu-2").select("maven")
+
+
+    })
+    it("Handling Autocomplete",()=>{
+        cy.visit("http://www.webdriveruniversity.com/")
+        cy.get("a[href*='Autocomplete-TextField").invoke('removeAttr','target').click();
+       
+        cy.get(".section_header").should("contain.text","Autocomplete TextField")
+        cy.get("input#myInput").type("A");
+        cy.get("div#myInputautocomplete-list").its('length').should("be.gt",0);
+        cy.get("div#myInputautocomplete-list").each(function($el, $index, $list){
+            const prod = $el.text();
+            cy.log (prod)
+                        
+        })
+    })
+    it("Scroll webelement to view",()=>{
+        cy.visit("http://www.webdriveruniversity.com/")
+        cy.get("a[href*='Scrolling'").invoke('removeAttr','target').click();
+     
+        cy.get("#zone4").scrollIntoView();
+        cy.get("#zone3").scrollIntoView();
+
+    })
+    it("Actions - double click",()=>{
+        cy.visit("http://www.webdriveruniversity.com/")
+        cy.get("a[href*='Actions'").invoke('removeAttr','target').click();
+        cy.get("h1#main-header").should("contain.text","The Key to Success is to take massive ACTION!")
+        cy.get("div#double-click").dblclick();
+    })
+
+    it.only("Actions drag and drop - Trigger",()=>{
+        cy.visit("http://www.webdriveruniversity.com/")
+        cy.get("a[href*='Actions'").invoke('removeAttr','target').click();
+        cy.get("h1#main-header").should("contain.text","The Key to Success is to take massive ACTION!")
+        cy.get('#draggable').trigger('mousedown',{which: 1});
+        cy.get('#droppable').trigger('mousemove').trigger('mouseup',{force:true});
+     })
 
 })
