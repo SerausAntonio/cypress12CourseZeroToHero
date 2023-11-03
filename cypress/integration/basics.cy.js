@@ -271,7 +271,8 @@ it("Navigate to closest Element",()=>{
         cy.log($it.text());
     })
 })
-it.only("Filter Element",()=>{
+
+it("Filter Element",()=>{
     cy.visit("http://www.webdriveruniversity.com/")
     cy.get("a[href*='Data-Table'").invoke('removeAttr','target').click();
     cy.get('.btn-group-toggle > *').filter('.active')
@@ -279,4 +280,45 @@ it.only("Filter Element",()=>{
 
 })
 
+it("Number of siblings",()=>{
+    cy.visit("http://www.webdriveruniversity.com/")
+    cy.get("a[href*='Data-Table'").invoke('removeAttr','target').click();
+
+    cy.get('.traversal-drinks-list:nth-child(2) > li:nth-child(2)').should("have.id","tea");  
+
+    cy.get('.traversal-drinks-list:nth-child(2) > *').each($it =>{
+           cy.log($it.text());
+   })
+
+   cy.get('.traversal-drinks-list').contains('Tea').nextAll().should('have.length','3')
+   cy.get('#coffee').nextUntil('#milk');
+
+    
 })
+
+it("Data-table elements",()=>{
+        cy.visit("http://www.webdriveruniversity.com/")
+        cy.get("a[href*='Data-Table'").invoke('removeAttr','target').click();
+        cy.get('a').its('length').should("eq",11);
+        cy.get("#main-header").should('contain.text','Data, Tables & Button States')
+      
+        cy.get('#t01 tbody tr td:nth-child(3)').each(function($it,i,$li){
+           
+            cy.log(i,$it.text());
+                   
+        })
+       
+})
+    
+    
+       
+      
+it.only("Get sibling webelement",()=>{
+     cy.visit("http://www.webdriveruniversity.com/")
+     cy.get("a[href*='Data-Table'").invoke('removeAttr','target').click();
+     cy.get('td').its('length').should("eq",24);
+     cy.get('tbody tr').siblings().should('have.length',11);
+
+})
+}) 
+
