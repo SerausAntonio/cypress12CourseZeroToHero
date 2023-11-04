@@ -6,5 +6,9 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
     specPattern: "cypress/integration/**/*.cy.{js,jsx,ts,tsx}",
+    env: {
+      login_url: '/login',
+      products_url: '/products',
+    },
   },
 });

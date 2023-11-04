@@ -310,15 +310,64 @@ it("Data-table elements",()=>{
        
 })
     
-    
        
       
-it.only("Get sibling webelement",()=>{
+it("Get sibling webelement",()=>{
      cy.visit("http://www.webdriveruniversity.com/")
      cy.get("a[href*='Data-Table'").invoke('removeAttr','target').click();
      cy.get('td').its('length').should("eq",24);
      cy.get('tbody tr').siblings().should('have.length',11);
 
+})
+
+it("Handling Datepickers",()=>{
+    cy.visit("http://www.webdriveruniversity.com/")
+    cy.get("a[href*='Datepicker/index'").invoke('removeAttr','target').click();
+    cy.get('a').its('length').should("eq",1);
+    cy.get("#main-header").should('contain.text','Datepicker')
+    
+    let date = new Date();
+    date.setDate(date.getDate());
+    cy.log(date.getDate());
+
+    let date2 = new Date();
+    date2.setDate(date.getDate() - 15);
+    cy.log(date2.getDate());
+
+    var futureYear = date.getFullYear();
+    var futureMonth = date.toLocaleString("default", {month: "long"});
+    var futureDay = date.getDate();
+
+    cy.log(futureDay);
+    cy.log(futureMonth)
+    cy.log(futureYear)
+    
+    
+   cy.get('#datepicker .form-control').invoke("removeAttr","readonly").clear().type("11-03-2023");
+   //cy.get('.glyphicon.glyphicon-calendar').click();
+   cy.get('thead tr th.datepicker-switch')
+   .should("contain.text",'November 2023')
+   .parents('.datepicker-days')
+   .find('tr:nth-child(2) td:nth-child(7).day')
+   .should('have.text',11).click();
+
+})
+
+it.only("Need to Upload a specific file",()=>{
+
+    cy.visit("http://www.webdriveruniversity.com/")
+    cy.get("a[href*='File-Upload/index'").invoke('removeAttr','target').click();
+    cy.get('a').its('length').should("eq",1);
+
+    cy.get('form h2').should('contain.text','Please choose a file to upload:');
+    cy.get('#myFile').selectFile('cypress/fixtures/example.json')
+    cy.get("input#submit-button").click();
+    
+   
+    cy.on('window:alert',(str)=>{
+        return true;
+    })
+   
 })
 }) 
 
