@@ -27,12 +27,10 @@ it("Use alias for fixtures",function(){
     })
 })
 it.only("Environment variables",()=>{
-
+    cy.visit(Cypress.env('login_url'),{timeout:100000});
     cy.log(Cypress.env());
-    cy.log(Cypress.env('login_url'));
     cy.log(Cypress.env('products_url'));
-
-
+    
 })
 
 })
