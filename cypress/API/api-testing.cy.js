@@ -28,6 +28,10 @@ it.only("Validate /posts api contains the correct key and value",()=>{
         cy.log(body[0].id);
         cy.log(body[0].title);
         cy.log(body[0].author);
+      
+        expect(body[0]).has.property("id",1);
+        expect(body[0]).has.property("title","json-server");
+        expect(body[0]).has.property("author","typicode");
     });
 
     
