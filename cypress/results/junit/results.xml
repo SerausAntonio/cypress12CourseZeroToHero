@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<testsuites>
+<testsuite name="Root Suite" timestamp="2023-11-06T13:11:14" tests="0" file="cypress\integration\medium.cy.js" time="0.000" failures="0"></testsuite>
+<testsuite name="TestSuite-2:" timestamp="2023-11-06T13:11:14" tests="1" time="1.604" failures="0">
+  
+  <testcase name="TestSuite-2: Contact Form" time="1.494" classname="Contact Form"></testcase>
+  
+</testsuite>
+
+<testsuite name="Root Suite" timestamp="2023-11-06T13:11:02" tests="0" file="cypress\integration\advance.cy.js" time="0.000" failures="0"></testsuite>
+<testsuite name="Alias And Fixtures" timestamp="2023-11-06T13:11:02" tests="1" time="3.240" failures="0">
+  
+  <testcase name="Alias And Fixtures Environment variables" time="1.210" classname="Environment variables"></testcase>
+  
+</testsuite>
+
+<testsuite name="Root Suite" timestamp="2023-11-06T13:11:08" tests="0" file="cypress\integration\basics.cy.js" time="0.000" failures="0"></testsuite>
+<testsuite name="Inspect Automation Test Store items using chain of commands" timestamp="2023-11-06T13:11:08" tests="1" time="2.852" failures="0">
+  
+  <testcase name="Inspect Automation Test Store items using chain of commands Need to Upload a specific file" time="0.916" classname="Need to Upload a specific file"></testcase>
+  
+</testsuite>
+
+</testsuites>

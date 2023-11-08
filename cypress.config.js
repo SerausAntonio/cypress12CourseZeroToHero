@@ -6,12 +6,19 @@ module.exports = defineConfig({
    reporterOptions:{
     configFile: 'reporter-config.json'
    },
+   reporter: 'mochawesome',
+  reporterOptions: {
+    reportDir: 'cypress/results/mochawesome',
+    overwrite: false,
+    html: false,
+    json: true,
+  },
   e2e: {
     setupNodeEvents(on, config) {
       
       // implement node event listeners here
     },
-    specPattern: "cypress/integration/**/*.cy.{js,jsx,ts,tsx}",
+    specPattern: "cypress/API/**/*.cy.{js,jsx,ts,tsx}",
     baseUrl: "https://www.automationteststore.com",
     chromeWebSecurity: false,
     defaultCommandTimeout: 10000,

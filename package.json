@@ -4,15 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "cypress-dashboard":"npx cypress run --record --key 1dcd7020-b974-4651-a13b-39ab0d0ec535",
+    "cypress-dashboard-parallel":"npx cypress run --record --parallel --key 1dcd7020-b974-4651-a13b-39ab0d0ec535",
     "cy:run": "cypress run --headed --browser chrome",
     "cy:test": "cypress run --headed --browser electron",
-    "test": "Hallo Antonio how are you?"
+    "test": "echo\"Hallo Antonio how are you?",
+    "junit-merge": "npx junit-merge -d cypress/results/junit -o cypress/results/junit/results.xml",
+    "delete-junit-report": "rm -rf cypress/results/junit/results.xml",
+    "delete-results": "rm -rf cypress/results/* || true",
+    "junit-mocha-reports": "cypress run --reporter mochawesome --reporter-options reportDir=\"cypress/results\",overwrite=false,html=false,json=true",
+    "junit-merge-mocha": "npx mochawesome-merge \"cypress/results/*.json\" > mochawesome.json"
   },
   "author": "Antonio Seraus",
   "license": "ISC",
   "devDependencies": {
     "cypress": "^13.3.3",
     "cypress-multi-reporters": "^1.6.4",
-    "mocha-junit-reporter": "^2.2.1"
+    "mocha-junit-reporter": "^2.2.1",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0"
   }
 }

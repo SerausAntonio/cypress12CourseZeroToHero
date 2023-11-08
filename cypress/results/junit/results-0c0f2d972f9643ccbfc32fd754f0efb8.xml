@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="3.593" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2023-11-06T14:39:53" tests="0" file="cypress\integration\basics.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Inspect Automation Test Store items using chain of commands" timestamp="2023-11-06T14:39:53" tests="1" time="3.580" failures="0">
+    <testcase name="Inspect Automation Test Store items using chain of commands Need to Upload a specific file" time="1.399" classname="Need to Upload a specific file">
+    </testcase>
+  </testsuite>
+</testsuites>

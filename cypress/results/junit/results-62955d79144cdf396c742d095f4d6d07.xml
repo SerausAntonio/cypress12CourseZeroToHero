@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="0.143" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2023-11-08T10:54:57" tests="0" file="cypress\API\api-testing.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Api - testing Get Request" timestamp="2023-11-08T10:54:57" tests="1" time="0.135" failures="0">
+    <testcase name="Api - testing Get Request validate status code of the /post api" time="0.096" classname="validate status code of the /post api">
+    </testcase>
+  </testsuite>
+</testsuites>

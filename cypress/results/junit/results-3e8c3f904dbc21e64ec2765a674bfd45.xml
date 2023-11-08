@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="3.441" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2023-11-06T19:51:20" tests="0" file="cypress\integration\advance.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Alias And Fixtures" timestamp="2023-11-06T19:51:20" tests="1" time="3.437" failures="0">
+    <testcase name="Alias And Fixtures Environment variables" time="1.176" classname="Environment variables">
+    </testcase>
+  </testsuite>
+</testsuites>
